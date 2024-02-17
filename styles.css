@@ -1,0 +1,116 @@
+/* Created by Tivotal */
+
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: pink;
+}
+
+.menu {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu li {
+  position: absolute;
+  left: 0;
+  transform-origin: 110px;
+  transform: rotate(calc(360deg / 4 * var(--i)));
+  border-radius: 50%;
+  scale: 0;
+  z-index: 1;
+  overflow: hidden;
+  transition-delay: calc(0.05s * var(--i));
+  transition: 0.5s;
+}
+
+.menu.open li {
+  scale: 1;
+}
+
+.menu li::before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 100%;
+  background: #fff;
+  top: 0;
+  left: -30px;
+  z-index: 5;
+  transform: skewX(325deg) translateX(0);
+  box-shadow: -5px 0 0 dark palevioletred;
+  transition: 0.5s;
+}
+
+.menu li:hover::before {
+  transform: skewX(325deg) translateX(180px);
+  box-shadow: -50px 0 0 palevioletred;
+}
+
+.menu li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--clr);
+  color: #fff;
+  font-size: 2.25em;
+  border-radius: 50%;
+  transform: rotate(calc(360deg / -4 * var(--i)));
+  box-shadow: 0 3px 4px palevioletred;
+}
+
+.menu .toggle {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border: 1px solid pink;
+  border-radius: 50%;
+  box-shadow: 0 25px 15px palevioletred,
+    0 25px 15px palevioletred;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 3em;
+  color: palevioletred;
+}
+
+.menu .toggle i {
+  position: absolute;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.menu .toggle i:nth-child(1) {
+  opacity: 1;
+  transform: rotate(360deg);
+}
+
+.menu.open .toggle i:nth-child(1) {
+  opacity: 0;
+  transform: rotate(0deg);
+}
+
+.menu.open .toggle i:nth-child(2) {
+  opacity: 1;
+  transform: rotate(360deg);
+}
